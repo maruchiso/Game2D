@@ -1,12 +1,16 @@
 #pragma once
-#include "lib.h"
+#include "Player.h"
+#include <iostream>
+#include <SDL.h>
+#include <map>
+#include "const.h"
 
 class Object
 {
 public:
 	Object(int x, int y, int w, int h);
 	void render(SDL_Renderer* ren);
-	std::map <char, int> getPosition();
+	SDL_Rect getObject();
 
 private:
 	SDL_Rect rect;

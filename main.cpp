@@ -37,12 +37,12 @@ int main()
             else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
                 quit = true;
             }
-
+            
             player.handleEvent(e);
 
         }
-
-        player.update();
+        char direction = directionOfCollision(player, object, isCollision(player, object));
+        player.update(direction);
 
         //screen cleaning
         SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
