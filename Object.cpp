@@ -8,13 +8,6 @@ void Object::render(SDL_Renderer* ren) {
 	SDL_RenderFillRect(ren, &rect);
 }
 
-std::map<char, int> Object::getPosition() {
-	std::map<char, int> position;
-	position['x'] = rect.x;
-	position['y'] = rect.y;
-	position['h'] = rect.h;
-	position['w'] = rect.w;
-
-	return position;
+SDL_Rect Object::getObject() {
+	return rect;
 }
-

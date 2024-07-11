@@ -1,16 +1,19 @@
 #pragma once
-#include "lib.h"
-#include "dynamic_lib.h"
+#include "Object.h"
+#include <iostream>
+#include <SDL.h>
+#include <map>
+#include "const.h"
 
 class Player
 {
 public:
 	Player(int x, int y, int w, int h);
 	void handleEvent(SDL_Event& e);
-	void update();
+	void update(char direction);
 	void render(SDL_Renderer* ren);
-	std::map<char, int> getPosition();
-	void checkColisionWithObject(Object& object, colisionDirection isColision);
+	SDL_Rect getPlayer();
+	
 
 
 private:
@@ -19,4 +22,3 @@ private:
 	bool canMoveUp, canMoveDown, canMoveLeft, canMoveRight;
 
 };
-
