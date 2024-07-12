@@ -13,3 +13,5 @@ player has to move/jump on the platforms to avoid "opponents". I am thinking abo
 
 Now I have collision system (thanks Andrzej for helping:P)
 Now i want to generate objects(plataforms), then i needed to modify collision sytem to checking collision between multiple objects and player (not only one!).
+
+I find the bug, if the object is not a square, the collsion is not working properly, it's because my collision system depends on poor center points comparison. Sadly i have to change collision system:(
