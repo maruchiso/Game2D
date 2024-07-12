@@ -7,3 +7,9 @@ Etaps:
 4. Simple levels
 5. Fighting system
 6. ......
+
+Game concept:
+player has to move/jump on the platforms to avoid "opponents". I am thinking about moving whole scene rather than moving a character (something like geometry dash?). Player has 3 tries (hearths), if player touch ground or opponents, he will lose 1 hearth. Maybe add fighting system.
+
+Now I have collision system (thanks Andrzej for helping:P)
+Now i want to generate objects(plataforms), then i needed to modify collision sytem to checking collision between multiple objects and player (not only one!).
