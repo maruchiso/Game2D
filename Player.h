@@ -10,7 +10,7 @@ class Player
 public:
 	Player(int x, int y, int w, int h);
 	void handleEvent(SDL_Event& e);
-	void update(char direction);
+	void update(char d);
 	void render(SDL_Renderer* ren);
 	SDL_Rect getPlayer();
 	
@@ -19,6 +19,7 @@ public:
 private:
 	SDL_Rect rect;
 	int xVelocity, yVelocity;
-	bool canMoveUp, canMoveDown, canMoveLeft, canMoveRight;
+	int playerSpeed = 10;
+	
 
 };

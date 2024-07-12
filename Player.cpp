@@ -2,45 +2,52 @@
 #include "lib.h"
 #include "dynamic_lib.h"
 
+
+
 Player::Player(int x, int y, int w, int h) : rect{ x, y, w, h }, xVelocity(0), yVelocity(0) {}
 
 void Player::handleEvent(SDL_Event& e) {
 	if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
 
 		switch (e.key.keysym.sym) {
-		case SDLK_UP:    yVelocity -= 10; break;
-		case SDLK_DOWN:  yVelocity += 10; break;
-		case SDLK_RIGHT: xVelocity += 10; break;
-		case SDLK_LEFT:  xVelocity -= 10; break;
+		case SDLK_UP:    yVelocity -= playerSpeed; break;
+		case SDLK_DOWN:  yVelocity += playerSpeed; break;
+		case SDLK_RIGHT: xVelocity += playerSpeed; break;
+		case SDLK_LEFT:  xVelocity -= playerSpeed; break;
 		}
 	}
 
 	if (e.type == SDL_KEYUP && e.key.repeat == 0) {
 
 		switch (e.key.keysym.sym) {
-		case SDLK_UP:    yVelocity += 10; break;
-		case SDLK_DOWN:  yVelocity -= 10; break;
-		case SDLK_RIGHT: xVelocity -= 10; break;
-		case SDLK_LEFT:  xVelocity += 10; break;
+		case SDLK_UP:    yVelocity += playerSpeed; break;
+		case SDLK_DOWN:  yVelocity -= playerSpeed; break;
+		case SDLK_RIGHT: xVelocity -= playerSpeed; break;
+		case SDLK_LEFT:  xVelocity += playerSpeed; break;
 		}
 	}
 }
 
+
 void Player::update(char direction) {
-	
-	if (xVelocity > 0 && direction != 'R'){
-		rect.x += xVelocity;
+
+	if (direction == 'R'){
+		if(xVelocity < 0) rect.x += xVelocity;
 		rect.y += yVelocity;
 	}
-	else if (xVelocity < 0 && direction != 'L') {
-		rect.x += xVelocity;
+	else if (direction == 'L') {
+		if(xVelocity > 0) rect.x += xVelocity;
 		rect.y += yVelocity;
 	}
-	else if (yVelocity > 0 && direction != 'D') {
+	else if (direction == 'D') {
+		if(yVelocity < 0) rect.y += yVelocity;
 		rect.x += xVelocity;
-		rect.y += yVelocity;
 	}
-	else if (yVelocity < 0 && direction != 'U'){
+	else if (direction == 'U'){
+		if (yVelocity > 0) rect.y += yVelocity;
+		rect.x += xVelocity;
+	}
+	else {
 		rect.x += xVelocity;
 		rect.y += yVelocity;
 	}
@@ -50,6 +57,8 @@ void Player::update(char direction) {
 	if (rect.y + rect.h > WINDOW_HEIGHT) rect.y = WINDOW_HEIGHT - rect.h;
 
 }
+
+
 
 void Player::render(SDL_Renderer* ren) {
 	SDL_SetRenderDrawColor(ren, 0, 255, 255, 255);
