@@ -40,7 +40,6 @@ char directionOfCollision(Player& p, Object& o, bool col)
 		if (absX > absY) {
 			if (diffrenceX > 0)
 			{
-				
 				return 'L';
 			}
 			else {

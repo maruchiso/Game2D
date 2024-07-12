@@ -42,6 +42,7 @@ int main()
 
         }
         char direction = directionOfCollision(player, object, isCollision(player, object));
+        std::cout << direction << std::endl;
         player.update(direction);
 
         //screen cleaning
