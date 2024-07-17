@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <map>
+#include <vector>
 #include "const.h"
 
 class Player
@@ -10,7 +11,7 @@ class Player
 public:
 	Player(int x, int y, int w, int h);
 	void handleEvent(SDL_Event& e);
-	void update(char d);
+	void update(std::vector<char> directionList);
 	void render(SDL_Renderer* ren);
 	SDL_Rect getPlayer();
 	
