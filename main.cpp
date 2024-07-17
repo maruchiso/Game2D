@@ -26,8 +26,16 @@ int main()
 
     SDL_Event e;
     bool quit = false;
+
+    //initialization player and list of the platforms
     Player player(350, 250, 100, 100);
-    Object object(500, 400, 50, 50);
+
+    std::vector<Object> Lplatform = {
+        Object(400, 550, 400, 50),
+        Object(700, 400, 100, 150)
+        
+    };
+    //Object object(700, 400, 100, 150);
 
     while (!quit) {
         while (SDL_PollEvent(&e)) {
@@ -41,20 +49,29 @@ int main()
             player.handleEvent(e);
 
         }
-        char direction = directionOfCollision(player, object, isCollision(player, object));
-        std::cout << direction << std::endl;
-        player.update(direction);
+        //TODO: tablica kierunków wilekoœci ile jest obiektów (vector.size()) i na podstawie tablicy sprawdzaæ 
+        char direction = 'N';
+        std::vector<char> directionList;
+        //Check every possible collision with all objects at the screen
+        for (auto obj : Lplatform) {
+            direction = directionOfCollision(player, obj, isCollision(player, obj));
+            directionList.push_back(direction);
+            std::cout << direction << std::endl;
+        }
+        
+        player.update(directionList);
 
         //screen cleaning
         SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
         SDL_RenderClear(ren);
 
         //player new position render
-        object.render(ren);
+        for (auto obj : Lplatform) obj.render(ren);
         player.render(ren);
 
         //screen update
         SDL_RenderPresent(ren);
+        SDL_Delay(100);
     }
 
     //cleaning

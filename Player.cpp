@@ -29,28 +29,32 @@ void Player::handleEvent(SDL_Event& e) {
 }
 
 
-void Player::update(char direction) {
+void Player::update(std::vector<char> directionList) {
 
-	if (direction == 'R'){
-		if(xVelocity < 0) rect.x += xVelocity;
-		rect.y += yVelocity;
-	}
-	else if (direction == 'L') {
-		if(xVelocity > 0) rect.x += xVelocity;
-		rect.y += yVelocity;
-	}
-	else if (direction == 'D') {
-		if(yVelocity < 0) rect.y += yVelocity;
-		rect.x += xVelocity;
-	}
-	else if (direction == 'U'){
-		if (yVelocity > 0) rect.y += yVelocity;
-		rect.x += xVelocity;
-	}
-	else {
-		rect.x += xVelocity;
-		rect.y += yVelocity;
-	}
+	
+		if (std::find(directionList.begin(), directionList.end(), 'R') != directionList.end()) {
+			if (xVelocity < 0) rect.x += xVelocity;
+			rect.y += yVelocity;
+		}
+		else if (std::find(directionList.begin(), directionList.end(), 'L') != directionList.end()) {
+			if (xVelocity > 0) rect.x += xVelocity;
+			rect.y += yVelocity;
+		}
+		else if (std::find(directionList.begin(), directionList.end(), 'D') != directionList.end()) {
+			if (yVelocity < 0) rect.y += yVelocity;
+			rect.x += xVelocity;
+		}
+		else if (std::find(directionList.begin(), directionList.end(), 'U') != directionList.end()) {
+			if (yVelocity > 0) rect.y += yVelocity;
+			rect.x += xVelocity;
+		}
+		else {
+			rect.x += xVelocity;
+			rect.y += yVelocity;
+		}
+		
+
+	
 	if (rect.x < 0) rect.x = 0;
 	if (rect.x + rect.w > WINDOW_WIDTH) rect.x = WINDOW_WIDTH - rect.w;
 	if (rect.y < 0) rect.y = 0;

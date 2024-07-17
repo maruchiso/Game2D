@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "lib.h"
+
 Object::Object(int x, int y, int w, int h) : rect{ x, y, w, h } {};
 
 void Object::render(SDL_Renderer* ren) {
