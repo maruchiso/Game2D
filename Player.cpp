@@ -31,28 +31,28 @@ void Player::handleEvent(SDL_Event& e) {
 
 void Player::update(std::vector<char> directionList) {
 
+	bool canMoveRight = std::find(directionList.begin(), directionList.end(), 'R') != directionList.end();
+	bool canMoveUp = std::find(directionList.begin(), directionList.end(), 'U') != directionList.end();
+	bool canMoveLeft = std::find(directionList.begin(), directionList.end(), 'L') != directionList.end();
+	bool canMoveDown = std::find(directionList.begin(), directionList.end(), 'D') != directionList.end();
+
+	//Move on X axis
+	if (canMoveRight) {
+		if (xVelocity < 0) rect.x += xVelocity;
+	}
+	else if (canMoveLeft) {
+		if (xVelocity > 0) rect.x += xVelocity;
+	}
+	else rect.x += xVelocity;
 	
-		if (std::find(directionList.begin(), directionList.end(), 'R') != directionList.end()) {
-			if (xVelocity < 0) rect.x += xVelocity;
-			rect.y += yVelocity;
-		}
-		else if (std::find(directionList.begin(), directionList.end(), 'L') != directionList.end()) {
-			if (xVelocity > 0) rect.x += xVelocity;
-			rect.y += yVelocity;
-		}
-		else if (std::find(directionList.begin(), directionList.end(), 'D') != directionList.end()) {
-			if (yVelocity < 0) rect.y += yVelocity;
-			rect.x += xVelocity;
-		}
-		else if (std::find(directionList.begin(), directionList.end(), 'U') != directionList.end()) {
-			if (yVelocity > 0) rect.y += yVelocity;
-			rect.x += xVelocity;
-		}
-		else {
-			rect.x += xVelocity;
-			rect.y += yVelocity;
-		}
-		
+	//Move on Y axis
+	if (canMoveUp) {
+		if (yVelocity > 0) rect.y += yVelocity;
+	}
+	else if (canMoveDown) {
+		if (yVelocity < 0) rect.y += yVelocity;
+	}
+	else rect.y += yVelocity;
 
 	
 	if (rect.x < 0) rect.x = 0;

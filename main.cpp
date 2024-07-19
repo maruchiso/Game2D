@@ -71,7 +71,7 @@ int main()
 
         //screen update
         SDL_RenderPresent(ren);
-        SDL_Delay(100);
+        //SDL_Delay(100);
     }
 
     //cleaning
