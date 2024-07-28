@@ -1,0 +1,6 @@
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.opendb
+*.VC.db
+*.VC.opendb
