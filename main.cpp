@@ -29,12 +29,15 @@ int main()
 
     //initialization player and list of the platforms
     Player player(350, 250, 100, 100);
+    Tear tear(350, 250, 5, 5);
 
-    std::vector<Object> Lplatform = {
-        Object(400, 550, 400, 50),
-        Object(700, 400, 100, 150)
-        
+    //it has to rendering in random way on each level
+    std::vector<Object> objects = {
+        Object(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)
+   
     };
+
+    std::vector<Tear> tears;
     //Object object(700, 400, 100, 150);
 
     while (!quit) {
@@ -45,15 +48,17 @@ int main()
             else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
                 quit = true;
             }
-            
+            //We are handling player movement and for now shooting with the tears
             player.handleEvent(e);
+            
+            
 
         }
         //TODO: tablica kierunków wilekoœci ile jest obiektów (vector.size()) i na podstawie tablicy sprawdzaæ 
         char direction = 'N';
         std::vector<char> directionList;
         //Check every possible collision with all objects at the screen
-        for (auto obj : Lplatform) {
+        for (auto& obj : objects) {
             direction = directionOfCollision(player, obj, isCollision(player, obj));
             directionList.push_back(direction);
             std::cout << direction << std::endl;
@@ -66,7 +71,7 @@ int main()
         SDL_RenderClear(ren);
 
         //player new position render
-        for (auto obj : Lplatform) obj.render(ren);
+        for (auto& obj : objects) obj.render(ren);
         player.render(ren);
 
         //screen update

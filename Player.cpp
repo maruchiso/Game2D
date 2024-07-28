@@ -6,24 +6,33 @@
 
 Player::Player(int x, int y, int w, int h) : rect{ x, y, w, h }, xVelocity(0), yVelocity(0) {}
 
-void Player::handleEvent(SDL_Event& e) {
+void Player::handleEvent(SDL_Event& e, std::vector<Tear> tears) {
 	if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
 
 		switch (e.key.keysym.sym) {
-		case SDLK_UP:    yVelocity -= playerSpeed; break;
-		case SDLK_DOWN:  yVelocity += playerSpeed; break;
-		case SDLK_RIGHT: xVelocity += playerSpeed; break;
-		case SDLK_LEFT:  xVelocity -= playerSpeed; break;
+		case SDLK_w:    yVelocity -= playerSpeed; break;
+		case SDLK_s:  yVelocity += playerSpeed; break;
+		case SDLK_d: xVelocity += playerSpeed; break;
+		case SDLK_a:  xVelocity -= playerSpeed; break;
 		}
 	}
 
 	if (e.type == SDL_KEYUP && e.key.repeat == 0) {
 
 		switch (e.key.keysym.sym) {
-		case SDLK_UP:    yVelocity += playerSpeed; break;
-		case SDLK_DOWN:  yVelocity -= playerSpeed; break;
-		case SDLK_RIGHT: xVelocity -= playerSpeed; break;
-		case SDLK_LEFT:  xVelocity += playerSpeed; break;
+		case SDLK_w:    yVelocity += playerSpeed; break;
+		case SDLK_s:  yVelocity -= playerSpeed; break;
+		case SDLK_d: xVelocity -= playerSpeed; break;
+		case SDLK_a:  xVelocity += playerSpeed; break;
+		}
+	}
+
+	int tearXVelocity = 30;
+	int tearYVelocity = 30;
+	if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
+
+		switch (e.key.keysym.sym) {
+		case SDLK_UP: 
 		}
 	}
 }
